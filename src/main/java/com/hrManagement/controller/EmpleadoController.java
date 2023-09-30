@@ -44,7 +44,7 @@ public class EmpleadoController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/{rol}")
     public List<Empleado> obtenerEmpleadosPorCargo(@RequestParam Enum rol) {
         return empleadoLogica.obtenerEmpleadosPorCargo(RolEnum.valueOf(String.valueOf(rol)));
     }
