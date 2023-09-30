@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "9f6d2b4f-9848-4e6b-9c64-3b644fb8c564",
+		"name": "siga",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29571260"
+	},
+	"item": [
+		{
+			"name": "Empleados",
+			"item": [
+				{
+					"name": "Modificar empleado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": 12345,\r\n    \"nombre\": \"Daniel\",\r\n    \"edad\": 30,\r\n    \"rol\": \"Gerente\",\r\n    \"email\": \"danielS@gmail.com\",\r\n    \"numeroTelefonico\": 315151255\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/empleados/modificar/12345"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar empleado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": 66666,\r\n    \"nombre\": \"Mafe\",\r\n    \"edad\": 19,\r\n    \"rol\": \"Psicologa\",\r\n    \"email\": \"MafeS@gmail.com\",\r\n    \"numeroTelefonico\": 312151255\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/empleados/agregar"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar empleado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/empleados/eliminar/66666"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todos los empleados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/empleados/todos"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener datos de un empleado por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/empleados/24683"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PerfilEmpleados",
+			"item": [
+				{
+					"name": "Todos los perfiles de los empleados",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": 24683,\r\n    \"certificaciones\": \"Oracle Java SE; Experto en Scrum\",\r\n    \"experiencia\": \"5 years como programador; 2 years como project manager\",\r\n    \"habilidades\": \"Liderazgo; Comunicacion; Trabajo en equipo\",\r\n    \"nombre\": \"Juanes\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/perfilEmpleado/todos"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar perfil de un empleado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\":247532,\r\n    \"nombre\":\"Juan\",\r\n    \"habilidades\":\"Programador; Analista de datos; Scrum\",\r\n    \"experiencia\":\"5 años como Developer; 2 años como UX\",\r\n    \"certificaciones\":\"Oracle; Cisco\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/empleado/agregar"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar perfil de un empleado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/perfilEmpleado/eliminar/66666"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener datos del perfil de un empleado por ID Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/perfilEmpleado/24683"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

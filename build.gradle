@@ -50,9 +50,6 @@ jacoco {
 
 
 jacocoTestReport {
-	reports{
-		//csv.enable true
-	}
 	dependsOn test
 	afterEvaluate {
 		classDirectories.setFrom(files(classDirectories.files.collect {
