@@ -28,7 +28,8 @@ pitest {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	compileOnly("org.projectlombok:lombok")
+    testImplementation 'junit:junit:4.13.1'
+    compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("com.h2database:h2:2.2.220")
 	implementation("org.springframework.data:spring-data-jpa:2.7.15")
