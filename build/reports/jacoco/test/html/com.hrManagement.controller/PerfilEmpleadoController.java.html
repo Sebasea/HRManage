@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PerfilEmpleadoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hrmanament</a> &gt; <a href="index.source.html" class="el_package">com.hrManagement.controller</a> &gt; <span class="el_source">PerfilEmpleadoController.java</span></div><h1>PerfilEmpleadoController.java</h1><pre class="source lang-java linenums">package com.hrManagement.controller;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PerfilEmpleadoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hrmanament</a> &gt; <a href="index.source.html" class="el_package">com.hrManagement.controller</a> &gt; <span class="el_source">PerfilEmpleadoController.java</span></div><h1>PerfilEmpleadoController.java</h1><pre class="source lang-java linenums">package com.hrManagement.controller;
 
 import com.hrManagement.controller.dto.PerfilEmpleadoDTO;
 import com.hrManagement.logica.PerfilEmpleadoLogica;
@@ -30,14 +30,14 @@ public class PerfilEmpleadoController {
     @PostMapping(&quot;/agregar&quot;)
     public ResponseEntity&lt;String&gt; agregarPerfilEmpleado(@RequestBody PerfilEmpleadoDTO perfilEmpleadoDTO) {
         try {
-<span class="nc" id="L33">            boolean resultado = perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (resultado) {</span>
-<span class="nc" id="L35">                return ResponseEntity.ok(&quot;Perfil de empleado agregado correctamente&quot;);</span>
+<span class="fc" id="L33">            boolean resultado = perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            if (resultado) {</span>
+<span class="fc" id="L35">                return ResponseEntity.ok(&quot;Perfil de empleado agregado correctamente&quot;);</span>
             } else {
-<span class="nc" id="L37">                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(&quot;No se pudo agregar el perfil de empleado.&quot;);</span>
+<span class="fc" id="L37">                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(&quot;No se pudo agregar el perfil de empleado.&quot;);</span>
             }
-<span class="nc" id="L39">        } catch (PerfilEmpleadoLogica.EmpleadoNoExisteException e) {</span>
-<span class="nc" id="L40">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(&quot;No se puede crear el perfil ya que no hay un empleado con ese cÃ³digo&quot;);</span>
+<span class="fc" id="L39">        } catch (PerfilEmpleadoLogica.EmpleadoNoExisteException e) {</span>
+<span class="fc" id="L40">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(&quot;No se puede crear el perfil ya que no hay un empleado con ese cÃ³digo&quot;);</span>
         }
     }
 
@@ -45,29 +45,29 @@ public class PerfilEmpleadoController {
 
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;PerfilEmpleado&gt; obtenerDatosEmpleadoPorID(@PathVariable int id) {
-<span class="nc" id="L48">        PerfilEmpleado perfilEmpleado = perfilEmpleadoLogica.obtenerPerfilEmpleadoPorID(id);</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (perfilEmpleado != null) {</span>
-<span class="nc" id="L50">            return ResponseEntity.ok(perfilEmpleado);</span>
+<span class="fc" id="L48">        PerfilEmpleado perfilEmpleado = perfilEmpleadoLogica.obtenerPerfilEmpleadoPorID(id);</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (perfilEmpleado != null) {</span>
+<span class="fc" id="L50">            return ResponseEntity.ok(perfilEmpleado);</span>
         } else {
-<span class="nc" id="L52">            return ResponseEntity.notFound().build();</span>
+<span class="fc" id="L52">            return ResponseEntity.notFound().build();</span>
         }
     }
 
     @GetMapping(&quot;/todos&quot;)
     public List&lt;PerfilEmpleado&gt; obtenerTodosLosPerfilesDeEmpleados() {
-<span class="nc" id="L58">        return perfilEmpleadoLogica.obtenerTodosLosPerfilesDeEmpleados();</span>
+<span class="fc" id="L58">        return perfilEmpleadoLogica.obtenerTodosLosPerfilesDeEmpleados();</span>
     }
     @DeleteMapping(&quot;/eliminar/{codigo}&quot;)
     public ResponseEntity&lt;String&gt; eliminarPerfilEmpleado(@PathVariable int codigo) {
         try {
-<span class="nc" id="L63">            boolean resultado = perfilEmpleadoLogica.eliminarPerfilEmpleado(codigo);</span>
-<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (resultado) {</span>
-<span class="nc" id="L65">                return ResponseEntity.ok(&quot;Perfil del empleado desactivado correctamente&quot;);</span>
+<span class="fc" id="L63">            boolean resultado = perfilEmpleadoLogica.eliminarPerfilEmpleado(codigo);</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            if (resultado) {</span>
+<span class="fc" id="L65">                return ResponseEntity.ok(&quot;Perfil del empleado desactivado correctamente&quot;);</span>
             } else {
-<span class="nc" id="L67">                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(&quot;No se pudo desactivar el perfil del empleado.&quot;);</span>
+<span class="fc" id="L67">                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(&quot;No se pudo desactivar el perfil del empleado.&quot;);</span>
             }
-<span class="nc" id="L69">        } catch (PerfilEmpleadoLogica.EmpleadoNoExisteException e) {</span>
-<span class="nc" id="L70">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(&quot;No se puede desactivar el perfil del empleado ya que no existe.&quot;);</span>
+<span class="fc" id="L69">        } catch (PerfilEmpleadoLogica.EmpleadoNoExisteException e) {</span>
+<span class="fc" id="L70">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(&quot;No se puede desactivar el perfil del empleado ya que no existe.&quot;);</span>
         }
     }
 }

@@ -56,7 +56,8 @@ jacocoTestReport {
 		classDirectories.setFrom(files(classDirectories.files.collect {
 			fileTree(dir: it, exclude: [
 					'com/hrManagement/modelo/*',
-					'com/hrManagement/controller/dto'
+					'com/hrManagement/controller/dto',
+					'com/hrManagement/integration/integration/**'
 			])
 		}))
 	}
