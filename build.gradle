@@ -61,6 +61,9 @@ jacocoTestReport {
 			])
 		}))
 	}
+	reports{
+		csv.required.set(true)
+	}
 }
 tasks.named('test') {
 	useJUnitPlatform()
