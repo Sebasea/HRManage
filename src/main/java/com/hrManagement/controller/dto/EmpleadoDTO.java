@@ -15,4 +15,5 @@ public class EmpleadoDTO {
     private String email;
     private int numeroTelefonico;
     private String responsabilidades;
+    private boolean eliminar;
 }

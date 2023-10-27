@@ -1,8 +1,10 @@
 package com.hrManagement.integration.integration;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hrManagement.controller.dto.EmpleadoDTO;
+import com.hrManagement.logica.EmpleadoLogica;
 import com.hrManagement.logica.RolEnum;
+import com.hrManagement.modelo.Empleado;
+import com.hrManagement.repository.EmpleadoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -19,101 +20,120 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static com.hrManagement.logica.RolEnum.DESARROLLADOR;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
 @ActiveProfiles(profiles = "test")
 @RunWith(SpringRunner.class)
-
 @AutoConfigureMockMvc
+public class EmpleadoControllerITest {
 
-class EmpleadoControllerITest {
-
- /*   @Autowired
-    private MockMvc mvc;
     @Autowired
-    private TestRestTemplate restTemplate;
+    private MockMvc mockMvc;
+
+    @Autowired
+    private EmpleadoLogica empleadoLogica;
+
+    @Autowired
+    private EmpleadoRepository empleadoRepository;
+
+    private EmpleadoDTO empleadoDTO;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
+        empleadoDTO = new EmpleadoDTO();
+        empleadoDTO.setCodigo(4);
+        empleadoDTO.setNombre("Juan Perez");
+        empleadoDTO.setEdad(30);
+        empleadoDTO.setRol(RolEnum.DESARROLLADOR);
+        empleadoDTO.setEmail("juan.perez@example.com");
+        empleadoDTO.setNumeroTelefonico(1234567890);
+        empleadoDTO.setResponsabilidades("Desarrollar software");
+        empleadoDTO.setEliminar(false);
     }
 
-    private final ObjectMapper mapper = new ObjectMapper();
     @Test
-    void agregarEmpleado() throws Exception {
-        EmpleadoDTO empleadoDTO = buildEmpleadoDTO();
-        mvc.perform(MockMvcRequestBuilders
-                .post("/empleados/agregar")
-                .content(mapper.writeValueAsString(empleadoDTO))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+    public void agregarEmpleadoTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/empleados/agregar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\n" +
+                                "    \"codigo\": 5,\n" +
+                                "    \"nombre\": \"Juan Sebastian\",\n" +
+                                "    \"edad\": 20,\n" +
+                                "    \"rol\": \"DESARROLLADOR\",\n" +
+                                "    \"email\": \"juan.sebastian@example.com\",\n" +
+                                "    \"numeroTelefonico\": 123456789,\n" +
+                                "    \"responsabilidades\": \"Desarrollar software\",\n" +
+                                "    \"eliminar\": false\n" +
+                                "}"))
+                .andExpect(status().isCreated())
+                .andExpect(MockMvcResultMatchers.content().string("Empleado agregado correctamente"));
+
+        Empleado empleado = empleadoRepository.findById(5).orElse(null);
+        assert empleado != null;
+        assert empleado.getNombre().equals("Juan Sebastian");
+    }
+
+    @Test
+    public void obtenerEmpleadoTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/empleados/agregar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\n" +
+                                "    \"codigo\": 4,\n" +
+                                "    \"nombre\": \"Juan Perez\",\n" +
+                                "    \"edad\": 30,\n" +
+                                "    \"rol\": \"DESARROLLADOR\",\n" +
+                                "    \"email\": \"juan.perez@example.com\",\n" +
+                                "    \"numeroTelefonico\": 1234567890,\n" +
+                                "    \"responsabilidades\": \"Desarrollar software\",\n" +
+                                "    \"eliminar\": false\n" +
+                                "}"))
                 .andExpect(status().isCreated());
-    }
-    @Test
-    void obtenerDatosEmpleadoPorID() throws Exception {
-        EmpleadoDTO empleadoDTO = buildEmpleadoDTO();
-        mvc.perform(get("/empleados/{codigo}",1)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()).andDo(print());
-    }
-    @Test
-    void obtenerEmpleadosPorCargo() throws Exception{
-        EmpleadoDTO empleadoDTO = buildEmpleadoDTO();
-        mvc.perform(MockMvcRequestBuilders.get("/empleados/{rol}",DESARROLLADOR)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-
-    }
-
-    @Test
-    void obtenerTodosLosEmpleados() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/empleados/todos")
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/empleados/4"))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-
+                .andExpect(MockMvcResultMatchers.jsonPath("$.codigo").value(4))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.nombre").value("Juan Perez"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.edad").value(30))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.rol").value("DESARROLLADOR"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("juan.perez@example.com"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.numeroTelefonico").value(1234567890))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.responsabilidades").value("Desarrollar software"));
     }
 
     @Test
-    void modificarEmpleado() throws Exception{
-        EmpleadoDTO empleadoDTO = buildEmpleadoDTO();
-        empleadoDTO.setRol(RolEnum.valueOf("SCRUM_MANAGER"));
-        mvc.perform(MockMvcRequestBuilders.put("/empleados/modificar/{codigo}",1)
-                .content(mapper.writeValueAsString(empleadoDTO))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isResetContent());
+    public void actualizarEmpleadoTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/empleados/modificar/4")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\n" +
+                                "    \"codigo\": 4,\n" +
+                                "    \"nombre\": \"Juan Villalobos\",\n" +
+                                "    \"edad\": 30,\n" +
+                                "    \"rol\": \"ADMINISTRADOR\",\n" +
+                                "    \"email\": \"juan.villalobos@example.com\",\n" +
+                                "    \"numeroTelefonico\": 1234567890,\n" +
+                                "    \"responsabilidades\": \"Desarrollar software\",\n" +
+                                "    \"eliminar\": false\n" +
+                                "}"))
+                .andExpect(MockMvcResultMatchers.content().string("Empleado actualizado correctamente"));
 
-
+        Empleado empleado = empleadoRepository.findById(4).orElse(null);
+        assert empleado != null;
+        assert empleado.getNombre().equals("Juan Villalobos");
     }
 
     @Test
-    void eliminarEmpleado() throws Exception {
-        EmpleadoDTO empleadoDTO = buildEmpleadoDTO();
-        mvc.perform(MockMvcRequestBuilders.delete("/empleados/eliminar/{codigo}", 1)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
+    public void eliminarEmpleadoTest() throws Exception {
+        mockMvc.perform(delete("/empleados/eliminar/4"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(equalTo("Empleado desactivado correctamente")));
 
-
+        Empleado empleado = empleadoRepository.findById(4).orElse(null);
+        assert empleado != null;
+        assert empleadoLogica.eliminarEmpleado(4);
     }
-    private EmpleadoDTO buildEmpleadoDTO() {
-        EmpleadoDTO empleadoDTO = new EmpleadoDTO();
-        empleadoDTO.setCodigo(1);
-        empleadoDTO.setNombre("juanito");
-        empleadoDTO.setEdad(45);
-        empleadoDTO.setRol(RolEnum.valueOf("DESARROLLADOR"));
-        empleadoDTO.setEmail("juanitogr@gmail.com");
-        empleadoDTO.setNumeroTelefonico(1238527913);
-        empleadoDTO.setResponsabilidades("reponsabilidades");
-        return empleadoDTO;
-    }
-    */
 }

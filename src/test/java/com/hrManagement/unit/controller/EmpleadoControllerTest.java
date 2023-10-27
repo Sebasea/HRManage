@@ -55,7 +55,7 @@ class EmpleadoControllerTest {
     public void testObtenerDatosEmpleadoPorID() {
         Empleado empleado = new Empleado();
         when(empleadoLogica.obtenerEmpleadoPorID(anyInt())).thenReturn(empleado);
-        ResponseEntity<Empleado> response = empleadoController.obtenerDatosEmpleadoPorID(1);
+        ResponseEntity<Empleado> response = empleadoController.obtenerEmpleadoPorID(1);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(empleado, response.getBody());
     }

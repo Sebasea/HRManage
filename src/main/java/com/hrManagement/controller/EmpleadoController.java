@@ -34,8 +34,9 @@ public class EmpleadoController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Empleado> obtenerDatosEmpleadoPorID(@PathVariable int codigo) {
+
+    @GetMapping("/{codigo}")
+    public ResponseEntity<Empleado> obtenerEmpleadoPorID(@PathVariable int codigo) {
         Empleado empleado = empleadoLogica.obtenerEmpleadoPorID(codigo);
         if (empleado != null) {
             return ResponseEntity.ok(empleado);
@@ -44,7 +45,7 @@ public class EmpleadoController {
         }
     }
 
-    @GetMapping("/{rol}")
+    @GetMapping("/rol")
     public List<Empleado> obtenerEmpleadosPorCargo(@RequestParam Enum rol) {
         return empleadoLogica.obtenerEmpleadosPorCargo(RolEnum.valueOf(String.valueOf(rol)));
     }
