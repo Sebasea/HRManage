@@ -14,6 +14,7 @@ services:
 
   db:
     image: mysql:latest
+    container_name: mysql-db1
     ports:
       - '3307:3306'
     restart: unless-stopped
@@ -27,8 +28,29 @@ services:
     networks:
       - HR_net
 
+
+  hrmanage:
+      image: hrmanament
+      container_name: hrmanament
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "8080:8080"
+      restart: always
+
+      depends_on:
+        - db
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db1:3306?createDatabaseIfNotExist=true
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: pass1234
+      networks:
+        - HR_net
+
 networks:
   HR_net:
 
 volumes:
   db_data:
+
