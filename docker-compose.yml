@@ -4,17 +4,31 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "8077:80"
+      - '8077:80'
     environment:
-      - PMA_HOST=database
+      - PMA_HOST=db
     depends_on:
-      - database
-  database:
+      - db
+    networks:
+      - HR_net
+
+  db:
     image: mysql:latest
     ports:
-      - "5506:3306"
+      - '3307:3306'
     restart: unless-stopped
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 12345
-      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: HR_DB
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: pass1234
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - HR_net
+
+networks:
+  HR_net:
+
+volumes:
+  db_data:
