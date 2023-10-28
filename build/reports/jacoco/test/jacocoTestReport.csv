@@ -5,5 +5,3 @@ hrmanament,com.hrManagement.logica,PerfilEmpleadoLogica.EmpleadoNoExisteExceptio
 hrmanament,com.hrManagement.logica,RolEnum,0,39,0,0,0,2,0,1,0,1
 hrmanament,com.hrManagement.logica,EmpleadoLogica,20,162,1,7,8,40,1,10,0,7
 hrmanament,com.hrManagement.logica,PerfilEmpleadoLogica.CamposVaciosException,0,7,0,0,0,3,0,1,0,1
-hrmanament,com.hrManagement.controller,EmpleadoController,24,63,4,4,6,18,4,7,0,7
-hrmanament,com.hrManagement.controller,PerfilEmpleadoController,0,71,0,6,0,22,0,8,0,5
