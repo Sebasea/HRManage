@@ -39,6 +39,7 @@ dependencies {
 	implementation ('org.springdoc:springdoc-openapi-webmvc-core:1.7.0')
 	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
 	implementation 'mysql:mysql-connector-java:8.0.28'
+	implementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 test {
