@@ -1,7 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-hrmanament,com.hrManagement.logica,PerfilEmpleadoLogica,6,143,4,16,4,32,4,11,0,5
+hrmanament,com.hrManagement.logica,PerfilEmpleadoLogica,140,9,20,0,32,4,14,1,4,1
 hrmanament,com.hrManagement.logica,EmpleadoLogica.EmpleadoNoExisteException,4,0,0,0,2,0,1,0,1,0
-hrmanament,com.hrManagement.logica,PerfilEmpleadoLogica.EmpleadoNoExisteException,0,4,0,0,0,2,0,1,0,1
+hrmanament,com.hrManagement.logica,PerfilEmpleadoLogica.EmpleadoNoExisteException,4,0,0,0,2,0,1,0,1,0
 hrmanament,com.hrManagement.logica,RolEnum,0,39,0,0,0,2,0,1,0,1
-hrmanament,com.hrManagement.logica,EmpleadoLogica,20,162,1,7,8,40,1,10,0,7
-hrmanament,com.hrManagement.logica,PerfilEmpleadoLogica.CamposVaciosException,0,7,0,0,0,3,0,1,0,1
+hrmanament,com.hrManagement.logica,EmpleadoLogica,35,147,4,4,13,35,6,5,2,5
+hrmanament,com.hrManagement.logica,PerfilEmpleadoLogica.CamposVaciosException,7,0,0,0,3,0,1,0,1,0
+hrmanament,com.hrManagement.config,SpringSecurityConfig,48,0,0,0,12,0,4,0,4,0
+hrmanament,com.hrManagement.config,SpringSecurityTestConfig,0,22,0,0,0,7,0,2,0,2
