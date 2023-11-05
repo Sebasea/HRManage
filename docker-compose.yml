@@ -44,6 +44,16 @@ services:
       networks:
         - HR_net
 
+  sonarquebe:
+    image: sonarqube
+    container_name: sonarquebe
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    restart: always
+    networks:
+      - HR_net
+
 networks:
   HR_net:
 
