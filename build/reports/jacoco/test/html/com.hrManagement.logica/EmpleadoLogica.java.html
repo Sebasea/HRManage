@@ -21,8 +21,8 @@ public class EmpleadoLogica {
 <span class="fc" id="L21">    }</span>
 
     public boolean guardarEmpleado(EmpleadoDTO empleadoDTO) {
-<span class="pc bpc" id="L24" title="1 of 2 branches missed.">        if (empleadoRepository.findById(empleadoDTO.getCodigo()).isPresent()) {</span>
-<span class="nc" id="L25">            return false;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (empleadoRepository.findById(empleadoDTO.getCodigo()).isPresent()) {</span>
+<span class="fc" id="L25">            return false;</span>
         }
 
 <span class="fc" id="L28">        Empleado empleado = new Empleado();</span>
@@ -50,15 +50,15 @@ public class EmpleadoLogica {
     }
 
     public List&lt;Empleado&gt; obtenerEmpleadosPorCargo(Enum rol) {
-<span class="nc" id="L53">        return empleadoRepository.findByRol(rol);</span>
+<span class="fc" id="L53">        return empleadoRepository.findByRol(rol);</span>
     }
 
     public List&lt;Empleado&gt; obtenerTodosLosEmpleados() {
-<span class="nc" id="L57">        return empleadoRepository.findAll();</span>
+<span class="fc" id="L57">        return empleadoRepository.findAll();</span>
     }
 
     public boolean modificarEmpleado(int codigo, EmpleadoDTO empleadoActualizado) {
-<span class="pc bpc" id="L61" title="1 of 2 branches missed.">        if (empleadoRepository.existsById(codigo)) {</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (empleadoRepository.existsById(codigo)) {</span>
 <span class="fc" id="L62">            Empleado empleado = empleadoRepository.findById(codigo).orElse(null);</span>
 <span class="pc bpc" id="L63" title="1 of 2 branches missed.">            if (empleado != null) {</span>
                 // Actualiza los campos del empleado con los del DTO
@@ -72,14 +72,14 @@ public class EmpleadoLogica {
 <span class="fc" id="L72">                return true;</span>
             }
         }
-<span class="nc" id="L75">        return false;</span>
+<span class="fc" id="L75">        return false;</span>
     }
     public boolean eliminarEmpleado(int codigo) {
 <span class="fc" id="L78">        Optional&lt;Empleado&gt; empleadoOptional = empleadoRepository.findById(codigo);</span>
 <span class="fc" id="L79">        Empleado empleado = new Empleado();</span>
 <span class="fc" id="L80">        empleado.setEliminar(false);</span>
 
-<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (empleadoOptional.isPresent()) {</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (empleadoOptional.isPresent()) {</span>
 <span class="fc" id="L83">            empleado = empleadoOptional.get();</span>
 <span class="fc" id="L84">            empleado.setEliminar(true);</span>
 
@@ -93,7 +93,7 @@ public class EmpleadoLogica {
             }
         }
 
-<span class="nc" id="L96">        return false;</span>
+<span class="fc" id="L96">        return false;</span>
     }
 
     public static class EmpleadoNoExisteException extends RuntimeException {

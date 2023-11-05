@@ -16,7 +16,7 @@ services:
     image: mysql:latest
     container_name: mysql-db1
     ports:
-      - '3307:3306'
+      - '3306:3306'
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: HR_DB
@@ -41,10 +41,6 @@ services:
 
       depends_on:
         - db
-      environment:
-        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db1:3306?createDatabaseIfNotExist=true
-        SPRING_DATASOURCE_USERNAME: root
-        SPRING_DATASOURCE_PASSWORD: pass1234
       networks:
         - HR_net
 
