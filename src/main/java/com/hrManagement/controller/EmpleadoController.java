@@ -5,7 +5,6 @@ import com.hrManagement.logica.PerfilEmpleadoLogica;
 import com.hrManagement.logica.RolEnum;
 import com.hrManagement.modelo.Empleado;
 import com.hrManagement.logica.EmpleadoLogica;
-import com.hrManagement.repository.EmpleadoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +17,8 @@ public class EmpleadoController {
 
     private final EmpleadoLogica empleadoLogica;
 
-    private final EmpleadoRepository empleadoRepository;
-    public EmpleadoController(EmpleadoLogica empleadoLogica, EmpleadoRepository empleadoRepository) {
+    public EmpleadoController(EmpleadoLogica empleadoLogica) {
         this.empleadoLogica = empleadoLogica;
-        this.empleadoRepository = empleadoRepository;
     }
 
     @PostMapping("/agregar")

@@ -39,11 +39,11 @@ class EmpleadoControllerTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        empleadoController = new EmpleadoController(empleadoLogica, empleadoRepository);
+        empleadoController = new EmpleadoController(empleadoLogica);
     }
 
     @Test
-    public void testAgregarEmpleado() {
+    void testAgregarEmpleado() {
         EmpleadoDTO empleadoDTO = new EmpleadoDTO();
         when(empleadoLogica.guardarEmpleado(any(EmpleadoDTO.class))).thenReturn(true);
         ResponseEntity<String> response = empleadoController.agregarEmpleado(empleadoDTO);
@@ -52,7 +52,7 @@ class EmpleadoControllerTest {
     }
 
     @Test
-    public void testObtenerDatosEmpleadoPorID() {
+    void testObtenerDatosEmpleadoPorID() {
         Empleado empleado = new Empleado();
         when(empleadoLogica.obtenerEmpleadoPorID(anyInt())).thenReturn(empleado);
         ResponseEntity<Empleado> response = empleadoController.obtenerEmpleadoPorID(1);
@@ -61,7 +61,7 @@ class EmpleadoControllerTest {
     }
 
     @Test
-    public void testObtenerEmpleadosPorCargo() {
+    void testObtenerEmpleadosPorCargo() {
         List<Empleado> empleados = new ArrayList<>();
         when(empleadoLogica.obtenerEmpleadosPorCargo(any())).thenReturn(empleados);
         List<Empleado> response = empleadoController.obtenerEmpleadosPorCargo(ADMINISTRADOR);
@@ -69,7 +69,7 @@ class EmpleadoControllerTest {
     }
 
     @Test
-    public void testObtenerTodosLosEmpleados() {
+    void testObtenerTodosLosEmpleados() {
         List<Empleado> empleados = new ArrayList<>();
         when(empleadoLogica.obtenerTodosLosEmpleados()).thenReturn(empleados);
         List<Empleado> response = empleadoController.obtenerTodosLosEmpleados();
@@ -77,7 +77,7 @@ class EmpleadoControllerTest {
     }
 
     @Test
-    public void testModificarEmpleado() {
+    void testModificarEmpleado() {
         EmpleadoDTO empleadoDTO = new EmpleadoDTO();
         when(empleadoLogica.modificarEmpleado(anyInt(), any(EmpleadoDTO.class))).thenReturn(true);
         ResponseEntity<String> response = empleadoController.modificarEmpleado(1, empleadoDTO);
@@ -86,7 +86,7 @@ class EmpleadoControllerTest {
     }
 
     @Test
-    public void testEliminarEmpleado() throws EmpleadoLogica.EmpleadoNoExisteException {
+    void testEliminarEmpleado() throws EmpleadoLogica.EmpleadoNoExisteException {
         when(empleadoLogica.eliminarEmpleado(anyInt())).thenReturn(true);
         ResponseEntity<String> response = empleadoController.eliminarEmpleado(1);
         assertEquals(HttpStatus.OK, response.getStatusCode());

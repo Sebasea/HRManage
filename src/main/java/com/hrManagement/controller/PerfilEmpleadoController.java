@@ -2,29 +2,21 @@ package com.hrManagement.controller;
 
 import com.hrManagement.controller.dto.PerfilEmpleadoDTO;
 import com.hrManagement.logica.PerfilEmpleadoLogica;
-import com.hrManagement.modelo.Empleado;
 import com.hrManagement.modelo.PerfilEmpleado;
-import com.hrManagement.repository.EmpleadoRepository;
-import com.hrManagement.repository.PerfilEmpleadoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/perfilEmpleado")
 public class PerfilEmpleadoController {
 
     private final PerfilEmpleadoLogica perfilEmpleadoLogica;
-    private final PerfilEmpleadoRepository perfilEmpleadoRepository;
-    private final EmpleadoRepository empleadoRepository;
 
-    public PerfilEmpleadoController(PerfilEmpleadoLogica perfilEmpleadoLogica, PerfilEmpleadoRepository perfilEmpleadoRepository, EmpleadoRepository empleadoRepository) {
+    public PerfilEmpleadoController(PerfilEmpleadoLogica perfilEmpleadoLogica) {
         this.perfilEmpleadoLogica = perfilEmpleadoLogica;
-        this.perfilEmpleadoRepository = perfilEmpleadoRepository;
-        this.empleadoRepository = empleadoRepository;
     }
 
     @PostMapping("/agregar")

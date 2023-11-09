@@ -20,7 +20,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -44,11 +43,11 @@ class PerfilEmpleadoControllerTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        perfilEmpleadoController = new PerfilEmpleadoController(perfilEmpleadoLogica, perfilEmpleadoRepository, empleadoRepository);
+        perfilEmpleadoController = new PerfilEmpleadoController(perfilEmpleadoLogica);
     }
 
     @Test
-    public void agregarPerfilEmpleado_Success() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
+    void agregarPerfilEmpleado_Success() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
         perfilEmpleadoDTO.setNombre("John Doe");
@@ -68,7 +67,7 @@ class PerfilEmpleadoControllerTest {
     }
 
     @Test
-    public void agregarPerfilEmpleado_EmpleadoNoExisteException() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
+    void agregarPerfilEmpleado_EmpleadoNoExisteException() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
 
@@ -84,7 +83,7 @@ class PerfilEmpleadoControllerTest {
     }
 
     @Test
-    public void agregarPerfilEmpleado_InternalServerError() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
+    void agregarPerfilEmpleado_InternalServerError() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
 
@@ -100,7 +99,7 @@ class PerfilEmpleadoControllerTest {
     }
 
     @Test
-    public void obtenerDatosEmpleadoPorID_Success() {
+    void obtenerDatosEmpleadoPorID_Success() {
         PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
         perfilEmpleado.setCodigo(1);
         perfilEmpleado.setNombre("John Doe");
@@ -120,7 +119,7 @@ class PerfilEmpleadoControllerTest {
     }
 
     @Test
-    public void obtenerDatosEmpleadoPorID_NotFound() {
+    void obtenerDatosEmpleadoPorID_NotFound() {
         when(perfilEmpleadoLogica.obtenerPerfilEmpleadoPorID(1)).thenReturn(null);
 
         ResponseEntity<PerfilEmpleado> result = perfilEmpleadoController.obtenerDatosEmpleadoPorID(1);
@@ -132,7 +131,7 @@ class PerfilEmpleadoControllerTest {
     }
 
     @Test
-    public void obtenerTodosLosPerfilesDeEmpleados_Success() {
+    void obtenerTodosLosPerfilesDeEmpleados_Success() {
         List<PerfilEmpleado> perfilesEmpleado = new ArrayList<>();
         PerfilEmpleado perfilEmpleado1 = new PerfilEmpleado();
         perfilEmpleado1.setCodigo(1);
@@ -160,7 +159,7 @@ class PerfilEmpleadoControllerTest {
     }
 
     @Test
-    public void eliminarPerfilEmpleado_Success() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
+    void eliminarPerfilEmpleado_Success() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
         when(perfilEmpleadoLogica.eliminarPerfilEmpleado(1)).thenReturn(true);
 
         ResponseEntity<String> result = perfilEmpleadoController.eliminarPerfilEmpleado(1);
@@ -173,7 +172,7 @@ class PerfilEmpleadoControllerTest {
     }
 
     @Test
-    public void eliminarPerfilEmpleado_EmpleadoNoExisteException() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
+    void eliminarPerfilEmpleado_EmpleadoNoExisteException() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
         when(perfilEmpleadoLogica.eliminarPerfilEmpleado(1)).thenThrow(new PerfilEmpleadoLogica.EmpleadoNoExisteException());
 
         ResponseEntity<String> result = perfilEmpleadoController.eliminarPerfilEmpleado(1);
@@ -186,7 +185,7 @@ class PerfilEmpleadoControllerTest {
     }
 
     @Test
-    public void eliminarPerfilEmpleado_InternalServerError() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
+    void eliminarPerfilEmpleado_InternalServerError() throws PerfilEmpleadoLogica.EmpleadoNoExisteException {
         when(perfilEmpleadoLogica.eliminarPerfilEmpleado(1)).thenReturn(false);
 
         ResponseEntity<String> result = perfilEmpleadoController.eliminarPerfilEmpleado(1);

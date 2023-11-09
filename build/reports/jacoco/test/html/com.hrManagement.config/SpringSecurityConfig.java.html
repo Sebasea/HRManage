@@ -21,7 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-<span class="nc" id="L24">        http.authorizeHttpRequests((authz) -&gt; authz</span>
+<span class="nc" id="L24">        http.authorizeHttpRequests(authz -&gt; authz</span>
 <span class="nc" id="L25">                        .antMatchers(&quot;/**&quot;)</span>
 <span class="nc" id="L26">                        .authenticated()</span>
                 )

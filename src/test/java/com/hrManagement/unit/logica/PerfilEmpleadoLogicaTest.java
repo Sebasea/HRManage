@@ -36,12 +36,12 @@ class PerfilEmpleadoLogicaTest {
     private EmpleadoRepository empleadoRepository;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
         perfilEmpleadoLogica = new PerfilEmpleadoLogica(perfilEmpleadoRepository, empleadoRepository);
     }
     @Test
-    public void testGuardarPerfilEmpleado() {
+    void testGuardarPerfilEmpleado() {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
         perfilEmpleadoDTO.setNombre("Juan Pabloo");
@@ -62,7 +62,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testGuardarPerfilEmpleadoWithEmptyNombre() {
+    void testGuardarPerfilEmpleadoWithEmptyNombre() {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
         perfilEmpleadoDTO.setNombre("");
@@ -76,7 +76,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testGuardarPerfilEmpleadoWithEmptyHabilidades() {
+    void testGuardarPerfilEmpleadoWithEmptyHabilidades() {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
         perfilEmpleadoDTO.setNombre("Juan Pablo");
@@ -90,7 +90,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testGuardarPerfilEmpleadoWithEmptyExperiencia() {
+    void testGuardarPerfilEmpleadoWithEmptyExperiencia() {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
         perfilEmpleadoDTO.setNombre("Juan Pablo");
@@ -104,7 +104,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testGuardarPerfilEmpleadoWithEmptyCertificaciones() {
+    void testGuardarPerfilEmpleadoWithEmptyCertificaciones() {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
         perfilEmpleadoDTO.setNombre("Juan Pablo");
@@ -118,7 +118,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testGuardarPerfilEmpleadoWithNonexistentEmpleado() {
+    void testGuardarPerfilEmpleadoWithNonexistentEmpleado() {
         PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
         perfilEmpleadoDTO.setCodigo(1);
         perfilEmpleadoDTO.setNombre("Juan Pablo");
@@ -133,7 +133,7 @@ class PerfilEmpleadoLogicaTest {
         });
     }
     @Test
-    public void testObtenerPerfilEmpleadoPorID() {
+    void testObtenerPerfilEmpleadoPorID() {
         PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
         perfilEmpleado.setCodigo(1);
 
@@ -146,7 +146,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testObtenerPerfilEmpleadoPorIDWithNonexistentID() {
+    void testObtenerPerfilEmpleadoPorIDWithNonexistentID() {
         when(perfilEmpleadoRepository.findById(1)).thenReturn(Optional.empty());
 
         PerfilEmpleado result = perfilEmpleadoLogica.obtenerPerfilEmpleadoPorID(1);
@@ -155,7 +155,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testObtenerTodosLosPerfilesDeEmpleados() {
+    void testObtenerTodosLosPerfilesDeEmpleados() {
         List<PerfilEmpleado> perfilEmpleadoList = new ArrayList<>();
         perfilEmpleadoList.add(new PerfilEmpleado());
         perfilEmpleadoList.add(new PerfilEmpleado());
@@ -169,7 +169,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testEliminarPerfilEmpleado() {
+    void testEliminarPerfilEmpleado() {
         PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
         perfilEmpleado.setCodigo(1);
 
@@ -184,7 +184,7 @@ class PerfilEmpleadoLogicaTest {
     }
 
     @Test
-    public void testEliminarPerfilEmpleadoWithNonexistentID() {
+    void testEliminarPerfilEmpleadoWithNonexistentID() {
         when(perfilEmpleadoRepository.findById(1)).thenReturn(Optional.empty());
 
         boolean result = perfilEmpleadoLogica.eliminarPerfilEmpleado(1);

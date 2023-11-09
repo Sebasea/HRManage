@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ActiveProfiles(profiles = "test")
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-public class EmpleadoControllerITest {
+class EmpleadoControllerITest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -58,7 +58,7 @@ public class EmpleadoControllerITest {
     }
 
     @Test
-    public void agregarEmpleadoTest() throws Exception {
+    void agregarEmpleadoTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/empleados/agregar")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\n" +
@@ -80,7 +80,7 @@ public class EmpleadoControllerITest {
     }
 
     @Test
-    public void obtenerEmpleadoTest() throws Exception {
+    void obtenerEmpleadoTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/empleados/agregar")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\n" +
@@ -106,7 +106,7 @@ public class EmpleadoControllerITest {
     }
 
     @Test
-    public void actualizarEmpleadoTest() throws Exception {
+    void actualizarEmpleadoTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.put("/empleados/modificar/4")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\n" +
@@ -127,7 +127,7 @@ public class EmpleadoControllerITest {
     }
 
     @Test
-    public void eliminarEmpleadoTest() throws Exception {
+    void eliminarEmpleadoTest() throws Exception {
         mockMvc.perform(delete("/empleados/eliminar/4"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(equalTo("Empleado desactivado correctamente")));

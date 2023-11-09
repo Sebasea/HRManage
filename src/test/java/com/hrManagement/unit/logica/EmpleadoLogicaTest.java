@@ -16,13 +16,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.hrManagement.logica.RolEnum.ADMINISTRADOR;
-import static com.hrManagement.logica.RolEnum.GERENTE;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -43,7 +39,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testGuardarEmpleado() {
+    void testGuardarEmpleado() {
         EmpleadoDTO empleadoDTO = new EmpleadoDTO();
         empleadoDTO.setCodigo(1);
         empleadoDTO.setNombre("Juan Esteban");
@@ -64,7 +60,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testGuardarEmpleadoAlreadyExists() {
+    void testGuardarEmpleadoAlreadyExists() {
         EmpleadoDTO empleadoDTO = new EmpleadoDTO();
         empleadoDTO.setCodigo(1);
 
@@ -78,7 +74,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testObtenerEmpleadoPorID() {
+    void testObtenerEmpleadoPorID() {
         Empleado empleado = new Empleado();
         empleado.setCodigo(1);
 
@@ -91,7 +87,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testObtenerEmpleadoPorIDNotFound() {
+    void testObtenerEmpleadoPorIDNotFound() {
         when(empleadoRepository.findById(1)).thenReturn(Optional.empty());
 
         Empleado result = empleadoLogica.obtenerEmpleadoPorID(1);
@@ -101,7 +97,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testObtenerEmpleadosPorCargo() {
+    void testObtenerEmpleadosPorCargo() {
         List<Empleado> empleados = new ArrayList<>();
         Empleado empleado1 = new Empleado();
         empleado1.setRol(RolEnum.ADMINISTRADOR);
@@ -119,7 +115,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testObtenerTodosLosEmpleados() {
+    void testObtenerTodosLosEmpleados() {
         List<Empleado> empleados = new ArrayList<>();
         Empleado empleado1 = new Empleado();
         Empleado empleado2 = new Empleado();
@@ -135,7 +131,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testModificarEmpleado() {
+    void testModificarEmpleado() {
         EmpleadoDTO empleadoDTO = new EmpleadoDTO();
         empleadoDTO.setNombre("Juan Esteban");
         empleadoDTO.setEdad(30);
@@ -172,7 +168,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testModificarEmpleadoNotFound() {
+    void testModificarEmpleadoNotFound() {
         EmpleadoDTO empleadoDTO = new EmpleadoDTO();
 
         when(empleadoRepository.existsById(1)).thenReturn(false);
@@ -186,7 +182,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testEliminarEmpleado() {
+    void testEliminarEmpleado() {
         Empleado empleado = new Empleado();
         empleado.setCodigo(1);
 
@@ -202,7 +198,7 @@ class EmpleadoLogicaTest {
     }
 
     @Test
-    public void testEliminarEmpleadoNotFound() {
+    void testEliminarEmpleadoNotFound() {
         when(empleadoRepository.findById(1)).thenReturn(Optional.empty());
 
         boolean result = empleadoLogica.eliminarEmpleado(1);
@@ -210,4 +206,5 @@ class EmpleadoLogicaTest {
         verify(empleadoRepository, times(1)).findById(1);
         verify(empleadoRepository, never()).save(any(Empleado.class));
         Assertions.assertFalse(result);
-    }}
+    }
+}

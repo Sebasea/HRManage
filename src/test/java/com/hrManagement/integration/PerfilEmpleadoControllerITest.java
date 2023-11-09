@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles(profiles = "test")
 @AutoConfigureMockMvc
-public class PerfilEmpleadoControllerITest {
+class PerfilEmpleadoControllerITest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -72,7 +72,7 @@ public class PerfilEmpleadoControllerITest {
     }
     */
     @Test
-    public void agregarPerfilEmpleadoConEmpleadoNoExisteTest() throws Exception {
+    void agregarPerfilEmpleadoConEmpleadoNoExisteTest() throws Exception {
         perfilEmpleadoDTO.setCodigo(999);
 
         mockMvc.perform(post("/perfilEmpleado/agregar")
@@ -86,7 +86,7 @@ public class PerfilEmpleadoControllerITest {
     }
 
     @Test
-    public void obtenerDatosEmpleadoPorIDTest() throws Exception {
+    void obtenerDatosEmpleadoPorIDTest() throws Exception {
         PerfilEmpleado perfilEmpleado = new PerfilEmpleado(perfilEmpleadoDTO.getCodigo(), perfilEmpleadoDTO.getNombre(),
                 perfilEmpleadoDTO.getHabilidades(), perfilEmpleadoDTO.getExperiencia(), perfilEmpleadoDTO.getCertificaciones(), false);
         perfilEmpleadoRepository.save(perfilEmpleado);
@@ -102,13 +102,13 @@ public class PerfilEmpleadoControllerITest {
     }
 
     @Test
-    public void obtenerDatosEmpleadoPorIDNoExisteTest() throws Exception {
+    void obtenerDatosEmpleadoPorIDNoExisteTest() throws Exception {
         mockMvc.perform(get("/perfilEmpleado/{id}", 999))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    public void obtenerTodosLosPerfilesDeEmpleadosTest() throws Exception {
+    void obtenerTodosLosPerfilesDeEmpleadosTest() throws Exception {
         PerfilEmpleado perfilEmpleado1 = new PerfilEmpleado(1, "Juan Perez", "Java, Spring", "3 años", "Certificación Java", false);
         PerfilEmpleado perfilEmpleado2 = new PerfilEmpleado(2, "Maria Garcia", "Python, Django", "2 años", "Certificación Python", false);
         perfilEmpleadoRepository.saveAll(Arrays.asList(perfilEmpleado1, perfilEmpleado2));
@@ -131,7 +131,7 @@ public class PerfilEmpleadoControllerITest {
     }
 
     @Test
-    public void eliminarPerfilEmpleadoTest() throws Exception {
+    void eliminarPerfilEmpleadoTest() throws Exception {
         PerfilEmpleado perfilEmpleado = new PerfilEmpleado(perfilEmpleadoDTO.getCodigo(), perfilEmpleadoDTO.getNombre(),
                 perfilEmpleadoDTO.getHabilidades(), perfilEmpleadoDTO.getExperiencia(), perfilEmpleadoDTO.getCertificaciones(), false);
         perfilEmpleadoRepository.save(perfilEmpleado);
