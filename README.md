@@ -87,3 +87,24 @@ spring.datasource.password=mi_contraseña
 - Obtén y Analiza Respuestas: Postman te mostrará las respuestas de la API en formato JSON. Puedes analizar estas respuestas para verificar que la API funcione correctamente.
 
 Con estos pasos, podrás ejecutar la aplicación y probar la API de Gestión de Recursos Humanos utilizando Postman con tu base de datos externa.
+
+## Responsabilidad ética: Identificar responsabilidades éticas y profesionales que pueden ocurrir con el uso del sistema asignado ya sean en contextos globales, económicos, ambientales o sociales
+
+La implementación de sistemas de gestión de recursos humanos está asociada a una importante responsabilidad ética y profesional que debe ser reconocida y cumplida conscientemente. El sistema está diseñado para facilitar la gestión de empleados, expedientes y actividades relacionadas con los recursos humanos de la empresa; se puede implementar en diferentes áreas, como contextos globales, económicos, ambientales y sociales. A continuación, analizamos algunas de las responsabilidades éticas y profesionales asociadas con el uso de este sistema.
+### 1. Gestión de empleados:
+
+Crear, editar y eliminar registros de empleados: la capacidad de administrar la información personal y laboral de los empleados conlleva la obligación de garantizar la privacidad y la confidencialidad. Es importante implementar medidas de seguridad para proteger la información sensible de los usuarios y cumplir con las normas de privacidad. 
+
+Mantenimiento de la información de contacto de los empleados y de los datos personales: La recopilación y el almacenamiento de información personal requiere transparencia en el uso de los datos almacenados por cada usuario. Los responsables deben garantizar que se obtenga el consentimiento adecuado y que la información se utilice de forma ética y legal. 
+
+Asignar roles y responsabilidades a los empleados: la asignación de roles debe realizarse en función de las habilidades y capacidades de los empleados. La distribución justa de la responsabilidad ayuda a crear un ambiente de trabajo ético y motivador. 
+
+### 2. Gestión de expedientes de empleados:
+
+Grandes perfiles de habilidades y experiencia de los empleados: almacenar con precisión información relacionada con las habilidades y la experiencia de los empleados es fundamental para tomar decisiones informadas. Es responsabilidad de actualizar esta información y utilizarla de manera justa en los procesos de selección y desarrollo profesional.
+
+Certificación de Registro: La gestión de la certificación significa autenticidad y validez de la información. Es muy importante asegurarse de que los certificados archivados sean precisos y estén actualizados.
+
+
+El manejo inadecuado de esta información puede tener consecuencias éticas y profesionales. En un contexto global, económico, ambiental y social, el uso responsable de nuestros sistemas significa el impacto de la diversidad, la equidad y la inclusión de las decisiones comerciales. Además, se debe tener en cuenta la sostenibilidad y la responsabilidad social a la hora de utilizar los sistemas, garantizando que los métodos de trabajo sean éticos y respeten el medio ambiente y los derechos de los trabajadores. En resumen, la responsabilidad ética de gestionar los recursos humanos a través de nuestros sistemas significa que respetamos la protección de la información y promovemos su equidad y transparencia. Finalmente, promover el bienestar general de los empleados y de las comunidades en las que opera la organización. La implementación consciente de estas responsabilidades éticas y profesionales es esencial para garantizar un entorno de trabajo ético y sostenible.
+
