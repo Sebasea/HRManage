@@ -123,3 +123,39 @@ Además, se espera que este registro sea escalable y pueda manejar fácilmente l
 El registro de auditoría contiene acciones específicas como crear, editar y eliminar registros de empleados.
 Para lograr una estructura desacoplada y extensible, se decide implementar un patrón de comando.
 Este modelo permite encapsular las solicitudes en objetos, lo que facilita la parametrización de solicitudes, las operaciones en cola y la implementación de operaciones de devolución de llamadas.
+
+## Patrones y Estilos arquitectonicos:
+Dado el contexto del proyecto de Gestión de Recursos Humanos, es posible abordar la arquitectura desde dos perspectivas diferentes: la arquitectura de microservicios y la arquitectura de capas.
+
+### Arquitectura de Microservicios:
+En una arquitectura de microservicios, la aplicación se divide en servicios independientes y autónomos que se comunican entre sí a través de interfaces bien definidas, como APIs. Cada microservicio se centra en una función específica y puede ser desarrollado, implementado y escalado de manera independiente. Para el proyecto de Gestión de Recursos Humanos, podríamos tener los siguientes microservicios:
+
+Microservicio de Gestión de Empleados:
+
+Encargado de la creación, modificación y eliminación de registros de empleados.
+Maneja la información de contacto, datos personales, roles y responsabilidades.
+Microservicio de Gestión de Perfiles de Empleados:
+
+Almacena perfiles de habilidades y experiencia de los empleados.
+Registra certificaciones de los empleados.
+Cada microservicio podría tener su propia base de datos y ser escalado de manera independiente según las necesidades. La comunicación entre microservicios se realiza a través de interfaces bien definidas, como RESTful APIs o mensajería.
+
+### Arquitectura de Capas:
+En una arquitectura de capas, la aplicación se organiza en capas lógicas que representan diferentes responsabilidades. Cada capa tiene un propósito específico y se comunica con las capas adyacentes. Para el proyecto de Gestión de Recursos Humanos, podríamos tener las siguientes capas:
+
+Capa de Interfaz de Usuario (UI):
+
+Maneja la presentación y la interacción del usuario.
+Permite la creación, modificación y eliminación de registros de empleados y perfiles.
+
+Capa de Lógica de Aplicación o Negocio:
+
+Contiene la lógica empresarial, como la gestión de empleados y perfiles.
+Asigna roles y responsabilidades a los empleados.
+
+Capa de Acceso a Datos:
+
+Gestiona la interacción con la base de datos.
+Almacena y recupera información relacionada con empleados y perfiles.
+Cada capa se comunica con la capa adyacente, y esto permite una separación clara de las preocupaciones y facilita el mantenimiento y la escalabilidad.
+
