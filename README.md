@@ -108,3 +108,18 @@ Certificación de Registro: La gestión de la certificación significa autentici
 
 El manejo inadecuado de esta información puede tener consecuencias éticas y profesionales. En un contexto global, económico, ambiental y social, el uso responsable de nuestros sistemas significa el impacto de la diversidad, la equidad y la inclusión de las decisiones comerciales. Además, se debe tener en cuenta la sostenibilidad y la responsabilidad social a la hora de utilizar los sistemas, garantizando que los métodos de trabajo sean éticos y respeten el medio ambiente y los derechos de los trabajadores. En resumen, la responsabilidad ética de gestionar los recursos humanos a través de nuestros sistemas significa que respetamos la protección de la información y promovemos su equidad y transparencia. Finalmente, promover el bienestar general de los empleados y de las comunidades en las que opera la organización. La implementación consciente de estas responsabilidades éticas y profesionales es esencial para garantizar un entorno de trabajo ético y sostenible.
 
+## Patrón de diseño
+
+### Escenario: Debes usar el panel de comando para administrar a tus empleados.
+
+### Contexto: 
+Los sistemas de gestión de recursos humanos reconocieron la necesidad de implementar una cadena de auditoría para controlar las acciones realizadas sobre los expedientes de personal.
+
+Esta pista de auditoría debe registrar información detallada sobre quién realizó la acción, qué acción se tomó y cuándo se tomó.
+Además, se espera que este registro sea escalable y pueda manejar fácilmente la adición de nuevas operaciones sin afectar la estructura existente.
+
+### Por qué utilizar el patrón de comando: 
+
+El registro de auditoría contiene acciones específicas como crear, editar y eliminar registros de empleados.
+Para lograr una estructura desacoplada y extensible, se decide implementar un patrón de comando.
+Este modelo permite encapsular las solicitudes en objetos, lo que facilita la parametrización de solicitudes, las operaciones en cola y la implementación de operaciones de devolución de llamadas.
